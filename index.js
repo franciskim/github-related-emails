@@ -26,7 +26,7 @@ const clean = emails => {
 
 const process = (options, resolve) => {
     https.get(options, res => {
-        if (res.statusCode !== 200) throw new Error(`Status code: ${res.statusCode}`)
+        if (res.statusCode !== 200) console.error(`Status code: ${res.statusCode}`)
         let body = ''
         let emails
         res.on('data', d => {
@@ -50,7 +50,7 @@ const process = (options, resolve) => {
             }
         })
     }).on('error', e => {
-        throw new Error(e)
+        console.error(e)
     })
 }
 
