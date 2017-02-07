@@ -26,6 +26,7 @@ const clean = emails => {
 
 const process = (options, resolve, reject) => {
     https.get(options, res => {
+        if (res.statusCode !== 200) reject(res.statusCode)
         let body = ''
         let emails
         res.on('data', d => {
