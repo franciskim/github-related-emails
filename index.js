@@ -24,7 +24,7 @@ const clean = emails => {
     })
 }
 
-const process = options => {
+const process = (options, resolve) => {
     https.get(options, res => {
         let body = ''
         let emails
@@ -49,7 +49,7 @@ const process = options => {
             }
         })
     }).on('error', e => {
-        console.error(e)
+        throw e
     })
 }
 
@@ -61,7 +61,7 @@ if (argv.user) {
 module.exports = (user) => {
     return new Promise(resolve => {
         options.path = `/users/${user}/events/public`
-        process(options)
+        process(options, resolve)
     })
 }
 
