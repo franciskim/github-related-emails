@@ -1,6 +1,6 @@
 {
   "name": "github-related-emails",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Helps find the email address of a GitHub user, and related emails. Sorted by relevance.",
   "main": "index.js",
   "dependencies": {

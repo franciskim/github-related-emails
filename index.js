@@ -24,9 +24,9 @@ const clean = emails => {
     })
 }
 
-const process = (options, resolve, reject) => {
+const process = (options, resolve) => {
     https.get(options, res => {
-        if (res.statusCode !== 200) reject(res.statusCode)
+        if (res.statusCode !== 200) throw new Error(`Status code: ${res.statusCode}`)
         let body = ''
         let emails
         res.on('data', d => {
@@ -50,7 +50,7 @@ const process = (options, resolve, reject) => {
             }
         })
     }).on('error', e => {
-        reject(e)
+        throw new Error(e)
     })
 }
 
@@ -60,8 +60,8 @@ if (argv.user) {
 }
 
 module.exports = user => {
-    return new Promise((resolve, reject) => {
+    return new Promise(resolve => {
         options.path = `/users/${user}/events/public`
-        process(options, resolve, reject)
+        process(options, resolve)
     })
 }
