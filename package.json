@@ -1,0 +1,25 @@
+{
+  "name": "github-related-emails",
+  "version": "0.0.1",
+  "description": "Helps find the email address of a GitHub user, and related emails. Sorted by relevance.",
+  "main": "index.js",
+  "dependencies": {
+    "yargs": "~6.6.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "github",
+    "find",
+    "user",
+    "email",
+    "emails",
+    "scrape",
+    "api",
+    "public",
+    "data"
+  ],
+  "author": "Francis Kim <hello@franciskim.co> (https://franciskim.co)",
+  "license": "ISC"
+}
