@@ -49,9 +49,8 @@ const process = (options, resolve, reject) => {
                 else console.log('Nothing found!')
             }
         })
-        req.on('error', e => {
-            reject(e)
-        })
+    }).on('error', e => {
+        reject(e)
     })
 }
 
