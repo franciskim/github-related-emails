@@ -10,7 +10,7 @@ let options = {
 
 const clean = emails => {
     let uniq = emails
-        .map((email) => {
+        .map(email => {
             return {count: 1, name: email}
         })
         .reduce((a, b) => {
@@ -24,7 +24,7 @@ const clean = emails => {
     })
 }
 
-const process = (options, resolve) => {
+const process = (options, resolve, reject) => {
     https.get(options, res => {
         if (res.statusCode !== 200) console.error(`Status code: ${res.statusCode}`)
         let body = ''
@@ -49,8 +49,9 @@ const process = (options, resolve) => {
                 else console.log('Nothing found!')
             }
         })
-    }).on('error', e => {
-        console.error(e)
+        req.on('error', e => {
+            reject(e)
+        })
     })
 }
 
@@ -60,8 +61,8 @@ if (argv.user) {
 }
 
 module.exports = user => {
-    return new Promise(resolve => {
+    return new Promise((resolve, reject) => {
         options.path = `/users/${user}/events/public`
-        process(options, resolve)
+        process(options, resolve, reject)
     })
 }
